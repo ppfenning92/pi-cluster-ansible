@@ -2,9 +2,16 @@
 - hosts: all
   user: pi
   roles:
-    - overmind-common
+    - hivecluster-common
 
-- hosts: k3s_nodes
+- hosts: all
+  user: pi
+  tasks:
+    - name: "reboot"
+      become: true
+      reboot:
+
+- hosts: k3s_controlplane
   user: pi
   roles:
-    - overlord-common
+    - overmind-common

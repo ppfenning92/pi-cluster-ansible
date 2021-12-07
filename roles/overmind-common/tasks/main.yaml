@@ -1,0 +1,16 @@
+- name: "installs k3s server"
+  become: true
+  shell: curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -s -
+
+- name: "check"
+  become: true
+  shell: systemctl status k3s
+
+- name: "get token"
+  become: true
+  command: cat node-token chdir=/var/lib/rancher/k3s/server/node-token
+  register: node_token
+
+- name: Print to console
+  debug:
+    msg: "{{node_token.stdout}}"

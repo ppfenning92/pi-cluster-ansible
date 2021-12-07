@@ -1,0 +1,4 @@
+---
+- name: "installs k3s node"
+  become: true
+  shell: curl -sfL https://get.k3s.io | K3S_TOKEN="K10de6fe45ddb61038fcd9e5105572f76f6a1c11321c37109c79a2778a1f3302ba3::server:e4799c4ebd86f2d8c1ce3bbbdec9e44e" K3S_URL="https://hivemind-01.local.patrickpfenning.io:6443" K3S_NODE_NAME="{{ inventory_hostname }}" sh -

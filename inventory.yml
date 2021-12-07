@@ -1,46 +1,44 @@
 ---
 all:
   hosts:
-    hivemind-01:
-      ansible_host: hivemind-01.local.patrickpfenning.io
-      ansible_port: 50022
-      ansible_user: pi
+    overmind-01:
+      ansible_host: overmind-01.local.patrickpfenning.io
     overlord-01:
       ansible_host: overlord-01.local.patrickpfenning.io
-      ansible_port: 50022
-      ansible_user: pi
     overlord-02:
       ansible_host: overlord-02.local.patrickpfenning.io
-      ansible_port: 50022
-      ansible_user: pi
     overlord-03:
       ansible_host: overlord-03.local.patrickpfenning.io
-      ansible_port: 50022
-      ansible_user: pi
     overlord-04:
       ansible_host: overlord-04.local.patrickpfenning.io
-      ansible_port: 50022
-      ansible_user: pi
     overlord-05:
       ansible_host: overlord-05.local.patrickpfenning.io
-      ansible_port: 50022
-      ansible_user: pi
+      # ansible_port: 50022
     # overlord-06:
     # ansible_host: overlord-06.local.patrickpfenning.io
 
   children:
-    raspberry_pi:
+    pis:
       hosts:
-        hivemind-01: {}
+        overmind-01: {}
         overlord-01: {}
         overlord-02: {}
         overlord-03: {}
         overlord-04: {}
         overlord-05: {}
-        # overlord-06: {}
+    pi3:
+      hosts:
+        overlord-01: {}
+        overlord-02: {}
+        overlord-03: {}
+        overlord-04: {}
+        overlord-05: {}
+    pi4:
+      hosts:
+        overmind-01: {}
     k3s_controlplane:
       hosts:
-        hivemind-01: {}
+        overmind-01: {}
     k3s_nodes:
       hosts:
         overlord-01: {}
@@ -48,9 +46,7 @@ all:
         overlord-03: {}
         overlord-04: {}
         overlord-05: {}
-        # overlord-06: {}
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    # remote_user: pi
     ansible_port: 22
-    # ansible_user: pi
+    ansible_user: pi

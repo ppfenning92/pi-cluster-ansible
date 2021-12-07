@@ -1,0 +1,10 @@
+---
+- hosts: all
+  user: pi
+  roles:
+    - overmind-common
+
+- hosts: k3s_nodes
+  user: pi
+  roles:
+    - overlord-common

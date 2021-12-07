@@ -1,0 +1,53 @@
+{{ ansible_managed | comment }}
+
+{% set oh_my_zsh = user.oh_my_zsh|default({}) %}
+
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+export ZSH="/home/pi/.oh-my-zsh"
+
+export HISTCONTROL=ignoreboth
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+HIST_STAMPS="dd-mm-yyyy"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+	git
+	dotenv
+#	lol
+	jsontools
+	python
+	sudo
+	systemd
+	wd
+	zsh-syntax-highlighting
+	zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
+alias gogh='bash -c  "$(wget -qO- https://git.io/vQgMr)"'
+alias rimraf="rm -rf "
+alias du1="du -hd 1 "
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias mv="mv -i"
+alias rm="rm -i"

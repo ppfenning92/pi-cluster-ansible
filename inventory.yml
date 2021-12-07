@@ -17,12 +17,14 @@ all:
       ansible_host: overlord-03.local.patrickpfenning.io
       ansible_port: 50022
       ansible_user: pi
-    # overlord-04:
-    # ansible_host: overlord-04.local.patrickpfenning.io
-    # ansible_port: 22
-    # ansible_user: pi
-    # overlord-05:
-    # ansible_host: overlord-05.local.patrickpfenning.io
+    overlord-04:
+      ansible_host: overlord-04.local.patrickpfenning.io
+      ansible_port: 50022
+      ansible_user: pi
+    overlord-05:
+      ansible_host: overlord-05.local.patrickpfenning.io
+      ansible_port: 50022
+      ansible_user: pi
     # overlord-06:
     # ansible_host: overlord-06.local.patrickpfenning.io
 
@@ -33,8 +35,8 @@ all:
         overlord-01: {}
         overlord-02: {}
         overlord-03: {}
-        # overlord-04: {}
-        # overlord-05: {}
+        overlord-04: {}
+        overlord-05: {}
         # overlord-06: {}
     k3s_controlplane:
       hosts:
@@ -44,8 +46,8 @@ all:
         overlord-01: {}
         overlord-02: {}
         overlord-03: {}
-        # overlord-04: {}
-        # overlord-05: {}
+        overlord-04: {}
+        overlord-05: {}
         # overlord-06: {}
   vars:
     ansible_python_interpreter: /usr/bin/python3

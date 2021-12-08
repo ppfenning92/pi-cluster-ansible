@@ -13,16 +13,16 @@ export ZSH="/home/pi/.oh-my-zsh"
 
 export HISTCONTROL=ignoreboth
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+ZSH_THEME="alanpeabody"
 
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
-HIST_STAMPS="dd-mm-yyyy"
+HIST_STAMPS="%d.%m.%Y %H:%M:%S"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -44,10 +44,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias gogh='bash -c  "$(wget -qO- https://git.io/vQgMr)"'
 alias rimraf="rm -rf "
-alias du1="du -hd 1 "
-alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias mv="mv -i"
 alias rm="rm -i"
+alias cp="cp -i"
+
+if [ which -a exa &> /dev/null ]; then
+	alias ls=exa
+else
+	alias ls="ls --color=auto"
+fi

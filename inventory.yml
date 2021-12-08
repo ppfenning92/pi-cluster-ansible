@@ -3,6 +3,7 @@ all:
   hosts:
     overmind-01:
       ansible_host: overmind-01.local.patrickpfenning.io
+      color: "white"
     overlord-01:
       ansible_host: overlord-01.local.patrickpfenning.io
     overlord-02:

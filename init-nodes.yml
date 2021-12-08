@@ -1,0 +1,22 @@
+---
+- hosts: k3s_controlplane
+  user: pi
+  tasks:
+    - name: "get token"
+      become: true
+      command: cat node-token chdir=/var/lib/rancher/k3s/server
+      register: node_token
+
+    - name: set fact
+      set_fact:
+        node_token_fact: "{{ node_token }}"
+
+- hosts: k3s_nodes
+  user: pi
+  tasks:
+    - name: "set node-token"
+      set_fact:
+        token: '{{hostvars[groups["k3s_controlplane"][0]].node_token_fact.stdout}}'
+
+    - name: "install k3s on node"
+      shell: curl -sfL https://get.k3s.io | K3S_TOKEN="{{ token }}" K3S_URL="https://{{ hostvars[groups["k3s_controlplane"][0]].ansible_host }}:6443" K3S_NODE_NAME="{{ inventory_hostname }}" sh -

@@ -10,8 +10,3 @@
     - name: "reboot"
       become: true
       reboot:
-
-- hosts: k3s_controlplane
-  user: pi
-  roles:
-    - overmind-common

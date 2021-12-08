@@ -9,6 +9,7 @@
   become: true
   apt:
     pkg:
+      - exa
       - git
       - vim
       - zsh

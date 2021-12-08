@@ -8,7 +8,7 @@
 
 - name: "get token"
   become: true
-  command: cat node-token chdir=/var/lib/rancher/k3s/server/node-token
+  command: cat node-token chdir=/var/lib/rancher/k3s/server
   register: node_token
 
 - name: Print to console
